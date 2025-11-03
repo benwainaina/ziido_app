@@ -6,14 +6,22 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
+import { useEffect } from 'react';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import BootSplash from 'react-native-bootsplash';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+
+  useEffect(() => {
+    (async () => {
+      await BootSplash.hide({ fade: true });
+    })();
+  }, []);
 
   return (
     <SafeAreaProvider>
