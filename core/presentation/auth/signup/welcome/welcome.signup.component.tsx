@@ -5,6 +5,7 @@ import { ButtonSharedComponent } from '../../../shared/button/button.shared.comp
 import { fontScaleUtility } from '../../../../utilities/fontScale.utility';
 import DecorationSvg from '../../../../assets/auth/signup/welcome.decoration.svg';
 import { useInternationalizationUtility } from '../../../../utilities/useInternationalization.utility';
+import { LanguageSelectorSharedComponent } from '../../../shared/language-selector/languageSelector.shared.component';
 
 export const WelcomeSignupComponent = () => {
   /**
@@ -15,7 +16,7 @@ export const WelcomeSignupComponent = () => {
     <SafeAreaView>
       <View style={WelcomeSignupComponentStyles.wrapper}>
         <View style={WelcomeSignupComponentStyles.header}>
-          <Text>header</Text>
+          <LanguageSelectorSharedComponent />
         </View>
         <View style={WelcomeSignupComponentStyles.body}>
           <View style={WelcomeSignupComponentStyles.body__salutation}>

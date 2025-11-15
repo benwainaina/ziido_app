@@ -55,7 +55,6 @@ export const useInternationalizationUtility = () => {
           const resources = jsonStringToObjectUtility(
             getValue(LOCALIZATION_MAPPING[locale.code.toUpperCase()]) || '{}',
           );
-          console.log('resources', resources);
           i18n.addResourceBundle(
             locale.code.toLowerCase(),
             'translation',

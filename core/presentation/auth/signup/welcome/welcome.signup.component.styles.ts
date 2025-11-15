@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { itemScalerUtility } from '../../../../utilities/itemScaler.utility';
 import { fontScaleUtility } from '../../../../utilities/fontScale.utility';
+import { THEME_COLORS } from '../../../../shared/constants/theme.colors';
 
 export const WelcomeSignupComponentStyles = StyleSheet.create({
   wrapper: {
@@ -9,7 +10,13 @@ export const WelcomeSignupComponentStyles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
   },
-  header: {},
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingTop: itemScalerUtility()().h(27),
+    paddingRight: itemScalerUtility()().w(25),
+  },
   body: {
     display: 'flex',
     flex: 1,
@@ -36,7 +43,7 @@ export const WelcomeSignupComponentStyles = StyleSheet.create({
     position: 'absolute',
     bottom: itemScalerUtility()().h(96),
     alignSelf: 'center',
-    backgroundColor: '#8233E3',
+    backgroundColor: THEME_COLORS.purpleOne,
     paddingVertical: itemScalerUtility()().h(17),
     paddingHorizontal: itemScalerUtility()().w(68),
     borderRadius: itemScalerUtility()().w(200),
