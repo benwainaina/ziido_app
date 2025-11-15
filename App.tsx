@@ -5,23 +5,28 @@
  * @format
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AppRoutes } from './core/presentation/app.routes';
-import BootSplash from 'react-native-bootsplash';
 import { AppInitializer } from './core/utilities/appInitializer.utility';
+import { Provider } from 'react-redux';
+import {
+  STORE,
+  STORE_PERSISTOR,
+} from './core/presentation/state-manager/store';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import './i18n.config';
 
 const App = (): React.JSX.Element => {
-  useEffect(() => {
-    (async () => {
-      await BootSplash.hide();
-    })();
-  }, []);
-
   return (
     <React.StrictMode>
-      <AppInitializer>
-        <AppRoutes />
-      </AppInitializer>
+      <Provider store={STORE}>
+        <PersistGate persistor={STORE_PERSISTOR}>
+          <AppInitializer>
+            <AppRoutes />
+          </AppInitializer>
+        </PersistGate>
+      </Provider>
     </React.StrictMode>
   );
 };

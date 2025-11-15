@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import remoteConfig from '@react-native-firebase/remote-config';
 
 export const useRemoteConfigUtility = () => {
@@ -17,9 +17,7 @@ export const useRemoteConfigUtility = () => {
      */
     remoteConfig()
       .fetchAndActivate()
-      .then(() => {
-        setRemoteConfigAvailable(true);
-      })
+      .then(() => setRemoteConfigAvailable(true))
       .catch(err => {
         console.log('err', err);
       });
