@@ -5,7 +5,7 @@ import {
   selectUserLocale,
 } from '../../state-manager/shared/selectors';
 import { useState } from 'react';
-import { languageSelectorSharedComponentStyles } from './languageSelector.shared.component';
+import { languageSelectorSharedComponentStyles } from './languageSelector.shared.component.styles';
 import ChevronSvg from '../../../assets/shared/chevron.svg';
 import { TDynamicKeys } from '../../../shared/interfaces';
 import { setUserLocale } from '../../state-manager/shared/slice';
