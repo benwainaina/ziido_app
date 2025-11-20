@@ -6,12 +6,15 @@ import { fontScaleUtility } from '../../../../utilities/fontScale.utility';
 import DecorationSvg from '../../../../assets/auth/signup/welcome.decoration.svg';
 import { useInternationalizationUtility } from '../../../../utilities/useInternationalization.utility';
 import { LanguageSelectorSharedComponent } from '../../../shared/language-selector/languageSelector.shared.component';
+import { useCustomRouterUtility } from '../../../../utilities/useCustomRouter.utility';
 
 export const WelcomeSignupComponent = () => {
   /**
    * Hooks
    */
   const { translate } = useInternationalizationUtility();
+  const { navigate } = useCustomRouterUtility();
+
   return (
     <SafeAreaView>
       <View style={WelcomeSignupComponentStyles.wrapper}>
@@ -45,6 +48,7 @@ export const WelcomeSignupComponent = () => {
               }
               label={translate('AUTH.SIGNUP.WELCOME.ACTION_BUTTON')}
               underlayColor=""
+              onPress={() => navigate('continueAs', {})}
             />
           </View>
         </View>

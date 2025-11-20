@@ -4,4 +4,7 @@ export const THEME_COLORS = {
 
   //   whites
   whiteOne: '#ffffff',
+
+  // blacks
+  blackOne: '#000000',
 };

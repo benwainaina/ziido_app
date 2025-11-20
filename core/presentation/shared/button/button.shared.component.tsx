@@ -13,7 +13,7 @@ export const ButtonSharedComponent = ({
     <TouchableHighlight
       underlayColor={underlayColor}
       disabled={isDisabled}
-      onPress={() => onPress}
+      onPress={onPress}
       style={{
         ...buttonStyle,
       }}

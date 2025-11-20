@@ -5,7 +5,7 @@ import { THEME_COLORS } from '../../../../shared/constants/theme.colors';
 
 export const WelcomeSignupComponentStyles = StyleSheet.create({
   wrapper: {
-    backgroundColor: 'white',
+    backgroundColor: THEME_COLORS.whiteOne,
     height: '100%',
     width: '100%',
     justifyContent: 'space-between',

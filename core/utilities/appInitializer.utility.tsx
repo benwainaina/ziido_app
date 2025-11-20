@@ -24,7 +24,6 @@ export const AppInitializer = ({ children }: any) => {
 
   useEffect(() => {
     firebaseUtility().analytics();
-    console.log('haha');
   }, []);
 
   return <>{children}</>;

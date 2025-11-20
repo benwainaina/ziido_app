@@ -41,10 +41,7 @@ export const LanguageSelectorSharedComponent = () => {
       <TouchableHighlight
         underlayColor={''}
         onPress={() => setShowPicker(true)}
-        onLayout={ev => {
-          console.log('ev.nativeEvent.layout', ev.nativeEvent.layout);
-          setControlLayoutInfo(ev.nativeEvent.layout);
-        }}
+        onLayout={ev => setControlLayoutInfo(ev.nativeEvent.layout)}
       >
         <View style={languageSelectorSharedComponentStyles.wrapper}>
           <Text style={languageSelectorSharedComponentStyles.activeLanguage}>
