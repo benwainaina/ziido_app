@@ -19,22 +19,19 @@ interface IAccountType {
 
 const AccountTypes: IAccountType[] = [
   {
-    label: 'Trainer',
+    label: 'AUTH.SIGNUP.ACCOUNT_TYPE.TRAINER_LABEL',
     value: 'trainer',
-    description:
-      "You have a passion for training and transforming people's lives through exercise.",
+    description: 'AUTH.SIGNUP.ACCOUNT_TYPE.TRAINER_DESCRIPTION',
   },
   {
-    label: 'Client',
+    label: 'AUTH.SIGNUP.ACCOUNT_TYPE.CLIENT_LABEL',
     value: 'client',
-    description:
-      'You are new to the Gym and are looking for a trainer to guide you.',
+    description: 'AUTH.SIGNUP.ACCOUNT_TYPE.CLIENT_DESCRIPTION',
   },
   {
-    label: 'Be Your Own Trainer',
+    label: 'AUTH.SIGNUP.ACCOUNT_TYPE.BYOT_LABEL',
     value: 'beYourOwnTrainer',
-    description:
-      'If you know your way around the gym, then this is the way to go',
+    description: 'AUTH.SIGNUP.ACCOUNT_TYPE.BYOT_DESCRIPTION',
   },
 ];
 
@@ -81,7 +78,7 @@ export const AccountTypeSignupComponent = () => {
                   AccountTypeSignupComponentStyles.body__section_one__instruction__title
                 }
               >
-                Continue as
+                {translate('AUTH.SIGNUP.ACCOUNT_TYPE.TITLE')}
               </Text>
               <View
                 style={
@@ -100,8 +97,7 @@ export const AccountTypeSignupComponent = () => {
                     AccountTypeSignupComponentStyles.body__section_one__instruction__sub_title__text
                   }
                 >
-                  Long press an option to select it. This cannot be changed once
-                  you create an account!
+                  {translate('AUTH.SIGNUP.ACCOUNT_TYPE.SUB_TITLE')}
                 </Text>
               </View>
             </View>
@@ -132,7 +128,7 @@ export const AccountTypeSignupComponent = () => {
                             AccountTypeSignupComponentStyles.body__section_one__account_types__account__header__title
                           }
                         >
-                          {label}
+                          {translate(label)}
                         </Text>
                         <View>
                           <ChevronSvg />
@@ -145,7 +141,7 @@ export const AccountTypeSignupComponent = () => {
                           AccountTypeSignupComponentStyles.body__section_one__account_types__account__body
                         }
                       >
-                        {description}
+                        {translate(description)}
                       </Text>
                     )}
                   </View>
@@ -164,9 +160,9 @@ export const AccountTypeSignupComponent = () => {
                   color: 'white',
                 } as any
               }
-              label={translate('AUTH.SIGNUP.WELCOME.ACTION_BUTTON')}
+              label={translate('AUTH.SIGNUP.ACCOUNT_TYPE.ACTION_BUTTON')}
               underlayColor=""
-              onPress={() => navigate('continueAs', {})}
+              onPress={() => navigate('createAccount', {})}
             />
           </View>
         </View>
