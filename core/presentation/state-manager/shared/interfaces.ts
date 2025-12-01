@@ -1,3 +1,5 @@
+export type TAccountTypeOptions = 'trainer' | 'client' | 'beYourOwnTrainer';
+
 export interface ISupportedLocale {
   /**
    * Code for the locale eg EN

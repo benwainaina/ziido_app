@@ -1,4 +1,4 @@
-import { Text, TouchableHighlight, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AccountTypeSignupComponentStyles } from './accountType.signup.component.styles';
 import { LanguageSelectorSharedComponent } from '../../../shared/language-selector/languageSelector.shared.component';
@@ -10,10 +10,14 @@ import { ButtonSharedComponent } from '../../../shared/button/button.shared.comp
 import { fontScaleUtility } from '../../../../utilities/fontScale.utility';
 import { useInternationalizationUtility } from '../../../../utilities/useInternationalization.utility';
 import { useCustomRouterUtility } from '../../../../utilities/useCustomRouter.utility';
+import { TAccountTypeOptions } from '../../../state-manager/shared/interfaces';
+import { THEME_COLORS } from '../../../../shared/constants/theme.colors';
+import { useDispatch } from 'react-redux';
+import { setUserPreferredExperience } from '../../../state-manager/auth/slice';
 
 interface IAccountType {
   label: string;
-  value: string;
+  value: TAccountTypeOptions;
   description: string;
 }
 
@@ -41,6 +45,7 @@ export const AccountTypeSignupComponent = () => {
    */
   const { translate } = useInternationalizationUtility();
   const { navigate } = useCustomRouterUtility();
+  const dispatch = useDispatch();
 
   /**
    * States
@@ -48,6 +53,8 @@ export const AccountTypeSignupComponent = () => {
   const [activeAccountType, setActiveAccountType] = useState<
     number | undefined
   >(undefined);
+  const [selectedExperience, setSelectedEperience] =
+    useState<TAccountTypeOptions | null>();
 
   /**
    * Handlers
@@ -58,6 +65,13 @@ export const AccountTypeSignupComponent = () => {
     } else {
       setActiveAccountType(undefined);
     }
+  };
+
+  const onAccountExperienceSelected = (
+    accountExperience: TAccountTypeOptions,
+  ) => {
+    dispatch(setUserPreferredExperience(accountExperience));
+    setSelectedEperience(accountExperience);
   };
 
   return (
@@ -108,50 +122,58 @@ export const AccountTypeSignupComponent = () => {
             >
               {AccountTypes.map(
                 ({ value, label, description }: IAccountType, index) => (
-                  <View
+                  <Pressable
                     key={value}
-                    style={
-                      AccountTypeSignupComponentStyles.body__section_one__account_types__account
-                    }
+                    onPress={() => onAccountTypeClicked(index)}
+                    onLongPress={() => onAccountExperienceSelected(value)}
                   >
-                    <TouchableHighlight
-                      underlayColor={''}
-                      onPress={() => onAccountTypeClicked(index)}
+                    <View
+                      style={
+                        AccountTypeSignupComponentStyles.body__section_one__account_types__account
+                      }
                     >
-                      <View
-                        style={
-                          AccountTypeSignupComponentStyles.body__section_one__account_types__account__header
-                        }
-                      >
-                        <Text
+                      <View>
+                        <View
                           style={
-                            AccountTypeSignupComponentStyles.body__section_one__account_types__account__header__title
+                            AccountTypeSignupComponentStyles.body__section_one__account_types__account__header
                           }
                         >
-                          {translate(label)}
-                        </Text>
-                        <View>
-                          <ChevronSvg />
+                          <Text
+                            style={{
+                              ...AccountTypeSignupComponentStyles.body__section_one__account_types__account__header__title,
+                              color:
+                                selectedExperience === value
+                                  ? THEME_COLORS.purpleOne
+                                  : THEME_COLORS.blackOne,
+                            }}
+                          >
+                            {translate(label)}
+                          </Text>
+                          <View>
+                            <ChevronSvg />
+                          </View>
                         </View>
                       </View>
-                    </TouchableHighlight>
-                    {activeAccountType === index && (
-                      <Text
-                        style={
-                          AccountTypeSignupComponentStyles.body__section_one__account_types__account__body
-                        }
-                      >
-                        {translate(description)}
-                      </Text>
-                    )}
-                  </View>
+                      {activeAccountType === index && (
+                        <Text
+                          style={
+                            AccountTypeSignupComponentStyles.body__section_one__account_types__account__body
+                          }
+                        >
+                          {translate(description)}
+                        </Text>
+                      )}
+                    </View>
+                  </Pressable>
                 ),
               )}
             </View>
           </View>
           <View style={AccountTypeSignupComponentStyles.body__action_button}>
             <ButtonSharedComponent
-              buttonStyle={{}}
+              buttonStyle={{
+                opacity: !selectedExperience ? 0.5 : 1,
+              }}
               textStyle={
                 {
                   fontSize: fontScaleUtility(24),
@@ -163,6 +185,7 @@ export const AccountTypeSignupComponent = () => {
               label={translate('AUTH.SIGNUP.ACCOUNT_TYPE.ACTION_BUTTON')}
               underlayColor=""
               onPress={() => navigate('createAccount', {})}
+              isDisabled={!selectedExperience}
             />
           </View>
         </View>
